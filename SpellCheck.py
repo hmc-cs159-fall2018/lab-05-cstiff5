@@ -125,8 +125,6 @@ class SpellChecker():
 
                     # Sort the list by the second element
                     candidateList.sort(key=lambda x: x[1], reverse=True)
-                    # print(candidateList)
-                    print(candidateList[:4])
                     # Remove the second element, and append
                     candidateList = [x[0] for x in candidateList]
                 returnList += [candidateList]
@@ -145,9 +143,6 @@ class SpellChecker():
             # Convert sentence into list of lowercase words
             wordList = sentence.text.split()
             wordList = [x.lower() for x in wordList]
-            # Get rid of the period
-            if wordList[-1][-1] == '.':
-                wordList[-1] = wordList[-1][:-1]
             processedSentences.append(self.check_sentence(wordList, fallback))
 
         return processedSentences
@@ -174,13 +169,6 @@ class SpellChecker():
             if len(wordList) == 0:
                 continue
             wordList = [x.lower() for x in wordList]
-            print(wordList)
-            # Get rid of punctuation marks
-            for i in range(len(wordList)):
-                word = wordList[i]
-                if word[-1] == '.' or word[-1] == '?' or word[-1] == '!' or word[-1] == ',' or word[-1] == '·':
-                    wordList[i] = wordList[i][:-1]
-                    print("Removed things")
             processedSentences.append(self.autocorrect_sentence(wordList))
 
         return processedSentences

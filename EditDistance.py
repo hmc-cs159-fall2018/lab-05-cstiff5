@@ -84,8 +84,8 @@ class EditDistanceFinder():
         observed_cleaned = self._clean(observed_word)
         intended_cleaned = self._clean(intended_word)
 
-        table = self._do_align(observed_word, intended_word)
-        alignment = self._do_trace(observed_word, intended_word, table)
+        table = self._do_align(observed_cleaned, intended_cleaned)
+        alignment = self._do_trace(observed_cleaned, intended_cleaned, table)
 
         return (table['cost'][-1, -1], alignment)
 
